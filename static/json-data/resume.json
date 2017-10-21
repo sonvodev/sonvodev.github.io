@@ -1,0 +1,52 @@
+[
+  {
+    "duration": "2011 - 2015",
+    "role":"Graduated",
+    "companyName": "Ho Chi Minh University of Technology",
+    "typeOfWork": "fa fa-graduation-cap",
+    "briefInfomation": ["resume.marjor"],
+    "roleInProject": "",
+    "size": "",
+    "technologies": ""
+  },
+  {
+    "duration": "May 2012 - Mar 2014",
+    "role":"Frontend Developer",
+    "companyName": "Passion Fruit",
+    "typeOfWork": "fa fa-briefcase",
+    "briefInfomation": ["resume.passionFruitIntroduce"],
+    "roleInProject": "Full-stack Developer",
+    "size": 3,
+    "technologies": ".NET Core Web API, MSSQL Server 2012, HTML/CSS/Javascript & VueJS"
+  },
+  {
+    "duration": "Apr 2016 - May 2017",
+    "role":"Database Team Leader",
+    "companyName": "UNIT Corp",
+    "typeOfWork": "fa fa-briefcase",
+    "briefInfomation": ["resume.unitIntroduceFirst"],
+    "roleInProject": "Team Leader",
+    "size": 7,
+    "technologies": "MSSQL Server 2012"
+  },
+  {
+    "duration": "Mar 2014 - Apr 2015",
+    "role":"Full-stack developer",
+    "companyName": "NEXLE SOFT",
+    "typeOfWork": "fa fa-briefcase",
+    "briefInfomation": ["resume.nexleIntroduceFirst"],
+    "roleInProject": "Full-stack developer",
+    "size": 30,
+    "technologies": "ASP.NET Web API version 2, MSSQL Server 2012, HTML/CSS/Javscript , Angular 1.6, SP.NET MVC 5"
+  },
+  {
+    "duration": "May 2012 - Mar 2014",
+    "role":"Full-stack developer",
+    "companyName": "PMITS",
+    "typeOfWork": "fa fa-briefcase",
+    "briefInfomation": ["resume.pmitsIntroduceFirst","resume.pmitsIntroduceSecond","ARC: Authorization Request Coordination"],
+    "roleInProject": "Developer & Desinger",
+    "size": 5,
+    "technologies": "ASP.NET Web API version 2, MSSQL Server 2012, HTML/CSS/Javscript , Angular 1.6, SP.NET MVC 5"
+  }
+]
