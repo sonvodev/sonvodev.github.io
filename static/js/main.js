@@ -1,1 +1,334 @@
-"use strict";function initialize(e){var t=new google.maps.LatLng(10.833541,106.678654),a={center:t,scrollwheel:!1,zoom:7,mapTypeId:google.maps.MapTypeId.ROADMAP,styles:[{featureType:"water",elementType:"geometry",stylers:[{color:"#e9e9e9"},{lightness:17}]},{featureType:"landscape",elementType:"geometry",stylers:[{color:"#f5f5f5"},{lightness:20}]},{featureType:"road.highway",elementType:"geometry.fill",stylers:[{color:"#ffffff"},{lightness:17}]},{featureType:"road.highway",elementType:"geometry.stroke",stylers:[{color:"#ffffff"},{lightness:29},{weight:.2}]},{featureType:"road.arterial",elementType:"geometry",stylers:[{color:"#ffffff"},{lightness:18}]},{featureType:"road.local",elementType:"geometry",stylers:[{color:"#ffffff"},{lightness:16}]},{featureType:"poi",elementType:"geometry",stylers:[{color:"#f5f5f5"},{lightness:21}]},{featureType:"poi.park",elementType:"geometry",stylers:[{color:"#dedede"},{lightness:21}]},{elementType:"labels.text.stroke",stylers:[{visibility:"on"},{color:"#ffffff"},{lightness:16}]},{elementType:"labels.text.fill",stylers:[{saturation:36},{color:"#333333"},{lightness:40}]},{elementType:"labels.icon",stylers:[{visibility:"off"}]},{featureType:"transit",elementType:"geometry",stylers:[{color:"#f2f2f2"},{lightness:19}]},{featureType:"administrative",elementType:"geometry.fill",stylers:[{color:"#fefefe"},{lightness:20}]},{featureType:"administrative",elementType:"geometry.stroke",stylers:[{color:"#fefefe"},{lightness:17},{weight:1.2}]}]},s=new google.maps.Map(document.getElementById("map-canvas"),a),o={url:"static/img/map-marker.png",scaledSize:new google.maps.Size(50,50)};new google.maps.Marker({position:t,map:s,title:"my office",icon:o})}function lazyLoadGoogleMap(){$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyDI_nP4mzaD9r0GafNS0q90X4mfwcfRwU4&callback=initializeMap").done(function(e,t){}).fail(function(e,t,a){})}function initializeMap(){initialize(params)}$(document).ready(function(){$("#clients").owlCarousel({loop:!1,items:1,margin:30,autoplay:!0,autoplayTimeout:5e3,autoplayHoverPause:!1,responsive:{0:{items:1},600:{items:1},1e3:{items:1}}});var e=$('<span class="fa" style="display:none"></span>').appendTo("body");"FontAwesome"!==e.css("font-family")&&$("head").append('<link href="../fonts/font-awesome-master/css/font-awesome.min.css" rel="stylesheet"/>'),e.remove(),$(".filtr-container").length&&$(".filtr-container").imagesLoaded(function(){$(".filtr-container").filterizr({delay:25,layout:"sameWidth"})}),$(".simplefilter").length&&$(".simplefilter li").on("click",function(){$(".simplefilter li").removeClass("active"),$(this).addClass("active")}),$(".header-info").flowtype({minimum:320,maximum:1920,minFont:16,maxFont:40,fontRatio:35});new Typed("#typed",{strings:["Full-Stack Developer"],typeSpeed:40,startDelay:1e3,loop:!1});$('[data-toggle="tooltip"]').tooltip({trigger:"manual"}).tooltip("show");new Waypoint({element:document.getElementById("skills"),offset:200,handler:function(){$(".progress-bar").each(function(){var e=0;e=$(this).attr("aria-valuenow"),$(this).width(e+"%")})}}),new Waypoint.Sticky({element:$("#nav"),stuckClass:"navbar-fixed-top",offset:"-550",handler:function(e){"down"===e?$("#navbar-collapse-1").removeClass("navbar-style"):$("#navbar-collapse-1").addClass("navbar-style")}});$(".images-parent").magnificPopup({delegate:".popup-open",type:"image",gallery:{enabled:!0},removalDelay:300,mainClass:"mfp-fade",retina:{ratio:1,replaceSrc:function(e,t){return e.src.replace(/\.\w+$/,function(e){return"@2x"+e})}}}),$(".project-img-container").on({mouseenter:function(){$(this).find(".project-img-overlay").fadeIn("fast",function(){$(this).css("display","block")})},mouseleave:function(){$(this).find(".project-img-overlay").fadeOut("fast",function(){$(this).css("display","none")})}}),$("a.page-scroll").on("click",function(){if(location.pathname.replace(/^\//,"")===this.pathname.replace(/^\//,"")&&location.hostname===this.hostname){var e=$(this.hash);if(e=e.length?e:$("[name="+this.hash.slice(1)+"]"),e.length)return $("html,body").animate({scrollTop:e.offset().top},1500),!1}}),$("#toggle-switcher").on("click",function(){$(this).hasClass("opened")?($(this).removeClass("opened"),$("#style-switcher").animate({left:"-282px"})):($(this).addClass("opened"),$("#style-switcher").animate({left:"-10px"}))}),$.session.get("theme-cookie")&&$("#theme").attr("href","css/"+$.session.get("theme-cookie")),$(".styleswitch").on("click",function(e){var t=$(this).attr("data-rel");$.session.set("theme-cookie",t),t?$("#theme").attr("href","css/"+$(this).attr("data-rel")):$("#theme").attr("href",""),e.preventDefault()}),document.getElementById("map-canvas")&&(window.google&&google.maps?initializeMap():lazyLoadGoogleMap())});var params;
+(function($) {
+    "use strict";
+    /*-------------------------- 
+        Current Date
+    ---------------------------*/
+    if($("#today").length) {
+        var date= new Date();
+        var day = new Array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
+        var month = new Array('January','February','March','April','May','June','July','August','September','October','November','December');
+        var datevalue = day[date.getDay()]+', '+month[date.getMonth()]+' '+date.getDate()+', '+date.getFullYear();
+        $('#today').html(datevalue);
+    }
+    /*-------------------------------------
+     jQuery Main Menu activation code
+     --------------------------------------*/
+    jQuery('nav#dropdown').meanmenu();
+
+    $('.dropdown-toggle').on('click', function() {
+        var location = $(this).attr('href');
+        window.location.href = location;
+        return false;
+    });
+
+
+    /*----------------------------
+    wow js active
+    ------------------------------ */
+    new WOW().init();
+
+    /*-------------------------------------
+       Author Slider jQuery activation code
+       -------------------------------------*/
+    $("#author-slider-section").owlCarousel({
+        // Most important owl features
+        items : 3,     
+        // Navigation 
+        nav: true,
+        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+        dots: false,
+        responsive:{
+            0:{
+              items:1 // In this configuration 1 is enabled from 0px up to 479px screen size 
+            },
+
+            480:{
+
+              items:2, // from 480 to 677 
+              nav:false // from 480 to max 
+
+            },
+
+            678:{
+
+              items:2, // from this breakpoint 678 to 959
+              center:false // only within 678 and next - 959
+            },
+
+            991:{
+
+              items:3, // from this breakpoint 960 to 1199
+              margin:20, // and so on...
+              center:false 
+
+            },
+
+            1200:{
+
+              items:3,
+              loop:false,
+              margin: 0
+
+            }
+        } 
+    });
+
+
+
+    /*-------------------------------------
+       Header News Slider jQuery activation code
+       -------------------------------------*/
+    $("#top-news-slider").owlCarousel({
+        // Most important owl features
+        items : 3,  
+        nav: true,
+        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],  
+        dots: false,
+        loop: true,
+        autoplay: true,
+        smartSpeed: 100,
+        autoplayHoverPause: true,
+        // Responsive options
+        responsive: true,
+        responsive:{
+		    0:{
+		      items:1 // In this configuration 1 is enabled from 0px up to 479px screen size 
+		    },
+
+		    480:{
+
+		      items:1, // from 480 to 677 
+		      nav:true // from 480 to max 
+
+		    },
+
+		    678:{
+
+		      items:1, // from this breakpoint 678 to 959
+		      center:false // only within 678 and next - 959
+		    },
+
+		    960:{
+
+		      items:2, // from this breakpoint 960 to 1199
+		      margin:20, // and so on...
+		      center:false 
+
+		    },
+
+		    1200:{
+
+		      items:3,
+		      margin: 0
+
+		    }
+	    } 
+    })
+
+    
+    /*-------------------------------------
+       Fetuered Videos jQuery activation code
+       -------------------------------------*/
+    $("#featured-videos-section").owlCarousel({
+        // Most important owl features
+        items : 3,     
+        // Navigation 
+        nav: true,
+        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+        dots: false,
+        responsive:{
+		    0:{
+		      items:1 // In this configuration 1 is enabled from 0px up to 479px screen size 
+		    },
+
+		    480:{
+
+		      items:1, // from 480 to 677 
+		      nav:false // from 480 to max 
+
+		    },
+
+		    678:{
+
+		      items:2, // from this breakpoint 678 to 959
+		      center:false // only within 678 and next - 959
+		    },
+
+		    768:{
+
+		      items:2, // from this breakpoint 960 to 1199
+		      margin:20, // and so on...
+		      center:false 
+
+		    },
+
+		    1200:{
+
+		      items:3,
+		      loop:false,
+		      margin: 0
+
+		    }
+	    } 
+    });
+
+
+    /*-------------------------------------
+       Fetuered Videos popup jQuery activation code
+       -------------------------------------*/
+
+    $('.popup-videos').magnificPopup({
+        disableOn: 10,
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+
+        fixedContentPos: false
+    }); 
+   
+
+    /*About Team Jquery*/
+
+    $("#total-team").owlCarousel({
+        // Most important owl features
+        items : 3,     
+        // Navigation 
+        nav: false,
+        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+        dots: false,
+        responsive:{
+            0:{
+              items:1 // In this configuration 1 is enabled from 0px up to 479px screen size 
+            },
+
+            480:{
+
+              items:2, // from 480 to 677 
+              nav:false // from 480 to max 
+
+            },
+
+            767:{
+
+              items:2, // from this breakpoint 678 to 959
+              center:false // only within 678 and next - 959
+            },
+
+            991:{
+
+              items:3, // from this breakpoint 960 to 1199
+              margin:20, // and so on...
+              center:false 
+
+            },
+
+            1200:{
+
+              items:3,
+              loop:false,
+              margin: 0
+
+            }
+        }
+
+    });
+	
+	/*-------------------------------------
+	Preloder Js here
+	---------------------------------------*/
+	//preloader
+	$(window).load(function() {
+		$(".preloader").delay(2000).fadeOut(500);
+		$(".sk-cube-grid").click(function() {
+		$(".preloader").fadeOut(500);
+		})
+	})
+	
+
+    /*-------------------------------------
+    Main Menu jQuery activation code
+    -------------------------------------*/
+   $(".main-menu ul a").on('click', function(e) {
+            var link = $(this);
+
+            var item = link.parent("li");
+            
+            if (item.hasClass("active")) {
+                item.removeClass("active").children("a").removeClass("active");
+            } else {
+                item.addClass("active").children("a").addClass("active");
+            }
+
+            if (item.children("ul").length > 0) {
+                var href = link.attr("href");
+                link.attr("href", "#");
+                setTimeout(function () { 
+                    link.attr("href", href);
+                }, 300);
+                e.preventDefault();
+            }
+        })
+        .each(function() {
+            var link = $(this);
+            if (link.get(0).href === location.href) {
+                link.addClass("active").parents("li").addClass("active");
+                return false;
+            }
+    });
+
+        
+    /*------------------------------------
+    SideSlide menu Activation
+    -------------------------------------*/
+    $('li#slideBotton > a > i').on('click', function() {
+        $('#sideSlide').addClass("highlight");
+    });
+    $('.close').on('click', function() {
+        $('#sideSlide').removeClass("highlight");
+    });
+
+    /*-------------------------------
+    Counter Up
+    ---------------------------------*/
+    $('.about-counter').counterUp({
+        delay: 50,
+        time: 3000
+    });
+
+
+
+ /*-------------------------------
+    Main menu sticky
+    ---------------------------------*/   
+
+    var num = $('.header-top-area').innerHeight();
+    var menu_height = $('.header-bottom-area').innerHeight();
+    $(window).bind('scroll', function () {    
+     if ($(window).scrollTop() >= num+menu_height) {
+            $('.header-bottom-area').addClass('sticky-header');
+      $('body').css({'padding-top':menu_height});
+        } else {
+            $('.header-bottom-area').removeClass('sticky-header');
+      $('body').css({'padding-top':0});
+        }        
+    });
+    
+    
+    /*--------------------------
+     ScrollTop init Activation Code
+    ---------------------------- */
+    $(window).scroll(function() {
+        if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+            $('#return-to-top').fadeIn(200);    // Fade in the arrow
+        } else {
+            $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+        }
+    });
+    $('#return-to-top').on('click', function() {      // When arrow is clicked
+        $('body,html').animate({
+            scrollTop : 0                       // Scroll to top of body
+        }, 500);
+    });
+    
+})(jQuery);
